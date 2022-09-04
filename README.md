@@ -1,4 +1,4 @@
-# TOV equation solver
+# TOV solver
 This solver gives numerical solution to TOV equation. This solver can be used to study the pressure,density,mass distribution of a neutron star.
 
 ### Usage
