@@ -1,9 +1,8 @@
 from ast import parse
 import constants
 from solver import tov
-from core import star
 import argparse
-from plotter import mass_profile, pressure_profile
+from plotter import density_profile, mass_profile, pressure_profile
 
 
 
@@ -15,7 +14,7 @@ def main():
     parser.add_argument("-p0","--rho0",default=1.0,type=float,help="central density (units of nuclear density)")
     parser.add_argument("-K","--adiabatic_coeff",type=float, help="adiabatic coefficient of the state equation")
     parser.add_argument("-y","--gamma",default=2.75,type=float,help="polytropic index")
-    parser.add_argument("-N","--grids",default=2000,type=float,help="number of grids for computing")
+    parser.add_argument("-N","--grids",default=2000,type=int,help="number of grids for computing")
     parser.add_argument("-R","--max_rad",default=50e5,type=float,help="maxiumum radius of the star")
     parser.add_argument("-t","--tol",default=0.001,type=float,help="tolerance")
     args = parser.parse_args()
@@ -26,6 +25,7 @@ def main():
     #plots
     pressure_profile(radius,Pressure)
     mass_profile(radius,Mass)
+    density_profile(radius,density)
 
 if __name__== '__main__':
     main()

@@ -1,11 +1,9 @@
 import numpy as np
-import time
+from constants import G,c
+
 def dPdr(r,m,rho,P):
-    G=6.67e-8 #cgs units
-    c=3.0e10 #cm/s
-    #m=(4/3)*np.pi*r**3*rho
     rs = 2*G*m/c**2
-    #eps=10e-5
+
     if r==0:
         return 0
     dPdr = -(G/(r**2))*(rho + P/c**2)*(m+4*np.pi*r**3 * (P/c**2))*(1- (rs/r))**-1
