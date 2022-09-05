@@ -1,5 +1,6 @@
 import numpy as np
 from constants import G,c
+import os
 
 def dPdr(r,m,rho,P):
     rs = 2*G*m/c**2
@@ -40,6 +41,14 @@ def TOV(rho0,K,gamma,N,Rmax):
 
     return P,m,rho,r
 
+def writetofile(data,file):
+    path = "output/"
+    with open(os.path.join(path,file),'w') as out:
+        for item in data:
+            out.write(str(item)+'\n')
+        out.close()
+
+
 class TOVsolver(object):
     def __init__(self,Mass,rho0,K,gamma,N=2000,Rmax=50e5,tol=0.001):
         self.Mass = 2e33*Mass #multiplied with solar mass
@@ -57,7 +66,12 @@ class TOVsolver(object):
             i+=1
             P,M,rho,r = TOV(self.rho0,self.K,self.gamma,self.N,self.Rmax)
             self.rho0,diff = rho_update(self.Mass,M[-1],rho[0])
-      
+
+        writetofile(P,"pressure.dat")
+        writetofile(M,"mass.dat")
+        writetofile(rho,"density.dat")
+        writetofile(r,"radius.dat")
+
         return P,M,rho,r
 
 

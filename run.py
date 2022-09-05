@@ -1,4 +1,3 @@
-from ast import parse
 import constants
 from solver import tov
 import argparse
